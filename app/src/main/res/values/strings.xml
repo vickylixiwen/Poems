@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Poems</string>
+    <string name="menu">古诗目录</string>
+    <string name="grade_one">一年级</string>
+    <string name="grade_two">二年级</string>
+    <string name="grade_three">三年级</string>
+    <string name="grade_four">四年级</string>
+    <string name="grade_five">五年级</string>
+
 </resources>
