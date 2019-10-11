@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SynonymActivity"></activity>
+        <activity android:name=".WrongListActivity" />
+        <activity android:name=".FrameDetailActivity" />
+        <activity android:name=".FrameListActivity" />
+        <activity android:name=".VocabularyActivity" />
+        <activity android:name=".PoemDetailActivity" />
+        <activity android:name=".PoemGradeActivity" />
+        <activity android:name=".PoemGradeListActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

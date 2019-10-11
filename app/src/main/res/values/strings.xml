@@ -1,10 +1,43 @@
 <resources>
-    <string name="app_name">Poems</string>
-    <string name="menu">古诗目录</string>
+    <string name="app_name">学习</string>
+    <string name="reciting">正在背诵</string>
+    <string name="main_title">类别</string>
+    <string name="menu">目录</string>
     <string name="grade_one">一年级</string>
     <string name="grade_two">二年级</string>
     <string name="grade_three">三年级</string>
     <string name="grade_four">四年级</string>
     <string name="grade_five">五年级</string>
-
+    <string name="recited">已背诵</string>
+    <string name="grade_one_title">古诗列表</string>
+    <string name="grade_one_poem1">咏鹅</string>
+    <string name="grade_one_poem2">江南</string>
+    <string name="grade_one_poem3">画</string>
+    <string name="grade_one_poem4">悯农(其二)</string>
+    <string name="grade_one_poem5">古朗月行</string>
+    <string name="grade_one_poem6">风</string>
+    <string name="grade_one_poem7">春晓</string>
+    <string name="grade_one_poem8">赠汪伦</string>
+    <string name="frame_title">成语典故</string>
+    <string-array name="main_list">
+        <item>古诗词</item>
+        <item>英语单词</item>
+        <item>Big English2</item>
+        <item>New Concept English</item>
+        <item>成语典故</item>
+        <item>英语错题整理</item>
+        <item>语文词语、近、反义词</item>
+    </string-array>
+    <string-array name="poem_grade_one_list">
+        <item>咏鹅</item>
+    </string-array>
+    <string-array name="vocabulary_list">
+        <item>afternoon</item>
+    </string-array>
+    <string-array name="wrong_list">
+        <item>Who am I?</item>
+    </string-array>
+    <string-array name="frame_list">
+        <item>明修栈道，暗度陈仓</item>
+    </string-array>
 </resources>
