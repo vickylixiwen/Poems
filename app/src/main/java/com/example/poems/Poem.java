@@ -4,7 +4,7 @@ public class Poem {
     private String title;
     private String author;
     private String content;
-    private String desc;
+    private String description;
 
     public static final Poem[] poems1 = {
         new Poem("咏鹅", "骆宾王",
@@ -85,11 +85,11 @@ public class Poem {
     };
 
 
-    private Poem(String title, String author, String content, String desc) {
+    private Poem(String title, String author, String content, String description) {
         this.title = title;
         this.author = author;
         this.content = content;
-        this.desc = desc;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -116,12 +116,12 @@ public class Poem {
         this.content = content;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String toString() {

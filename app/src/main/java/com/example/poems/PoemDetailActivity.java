@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /*
 This is the detail page of the poem with the title, author, content, explanation
@@ -44,7 +41,7 @@ public class PoemDetailActivity extends AppCompatActivity {
         TextView content = findViewById(R.id.contentDetail);
         content.setText(poem.getContent());
         TextView desc = findViewById(R.id.contentDesc);
-        desc.setText(poem.getDesc());
+        desc.setText(poem.getDescription());
         desc.setMovementMethod(new ScrollingMovementMethod());
     }
 }

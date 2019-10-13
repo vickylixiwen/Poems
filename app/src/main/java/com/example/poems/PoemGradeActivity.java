@@ -2,10 +2,15 @@ package com.example.poems;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 //public class PoemGradeActivity extends AppCompatActivity {
 //
@@ -52,6 +57,19 @@ public class PoemGradeActivity extends ListActivity {
         }
         ArrayAdapter<Poem> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, poems);
         gradeOneList.setAdapter(listAdapter);
+
+
+        try {
+            SQLiteOpenHelper poemDatabaseHelper = new PoemDatabaseHelper(this);
+            SQLiteDatabase db = poemDatabaseHelper.getReadableDatabase();
+            Cursor cursor = db.query("POEMS",
+                    new String[] {"NAME"}, "grade = ?", new String[] {Integer.toString(grade)},
+                    null, null, null);
+        } catch(SQLiteException e) {
+            Toast toast  = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+
+        }
 
     }
 
