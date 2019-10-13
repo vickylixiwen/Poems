@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         relayClass = VocabularyActivity.class;
                         break;
                     case 4:
-                        relayClass = FrameListActivity.class;
+                        relayClass = IdiomListActivity.class;
                         break;
                     case 5:
                         relayClass = WrongListActivity.class;

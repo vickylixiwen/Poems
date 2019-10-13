@@ -10,7 +10,10 @@ public class Vocabulary {
             new Vocabulary("very", "adjective.", "很，非常", "Thank you very much!"),
             new Vocabulary("afternoon", "noun.", "下午", "Good afternoon!"),
             new Vocabulary("refrigerator", "noun.", "冰箱", "There is one refrigerator in the living room!"),
-            new Vocabulary("closet", "noun.", "衣橱", "How many closets are there in the bedroom?")
+            new Vocabulary("closet", "noun.", "衣橱", "How many closets are there in the bedroom?"),
+            new Vocabulary("plate", "noun.", "盘子", "I like that white plate."),
+            new Vocabulary("white", "adjective.", "白色的", "I like that white plate."),
+
     };
 
     private Vocabulary(String word, String type, String meaning, String example) {

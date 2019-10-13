@@ -37,7 +37,7 @@
     <string-array name="wrong_list">
         <item>Who am I?</item>
     </string-array>
-    <string-array name="frame_list">
+    <string-array name="idiom_list">
         <item>明修栈道，暗度陈仓</item>
     </string-array>
 </resources>

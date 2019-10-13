@@ -11,8 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SynonymActivity"></activity>
         <activity android:name=".WrongListActivity" />
-        <activity android:name=".FrameDetailActivity" />
-        <activity android:name=".FrameListActivity" />
+        <activity android:name=".IdiomDetailActivity" />
+        <activity android:name=".IdiomListActivity" />
         <activity android:name=".VocabularyActivity" />
         <activity android:name=".PoemDetailActivity" />
         <activity android:name=".PoemGradeActivity" />
