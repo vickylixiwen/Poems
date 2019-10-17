@@ -54,7 +54,7 @@ public class PoemDetailActivity extends AppCompatActivity {
             SQLiteOpenHelper poemDatabaseHelper = new PoemDatabaseHelper(this);
             SQLiteDatabase db = poemDatabaseHelper.getReadableDatabase();
             Cursor cursor = db.query("POEMS",
-                    new String[] {"TITLE", "AUTHOR", "CONTENT", "DESCRIPTION"}, "_id = ?", new String[] {Integer.toString(poemId)},
+                    new String[] {"_id", "TITLE", "AUTHOR", "CONTENT", "DESCRIPTION"}, "_id = ?", new String[] {Integer.toString(poemId)},
                     null, null, null);
             if (cursor.moveToFirst()) {
                 String title = cursor.getString(1);
