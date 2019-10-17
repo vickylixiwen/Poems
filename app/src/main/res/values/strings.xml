@@ -19,6 +19,9 @@
     <string name="grade_one_poem7">春晓</string>
     <string name="grade_one_poem8">赠汪伦</string>
     <string name="frame_title">成语典故</string>
+    <string name="poem_prev">前一首</string>
+    <string name="poem_next">后一首</string>
+    <string name="poem_recited">背出来啦！</string>
     <string-array name="main_list">
         <item>古诗词</item>
         <item>英语单词</item>

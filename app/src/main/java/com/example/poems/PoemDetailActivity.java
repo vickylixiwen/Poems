@@ -19,49 +19,74 @@ This is the detail page of the poem with the title, author, content, explanation
 public class PoemDetailActivity extends AppCompatActivity {
 
     public static final String POEM_ID = "poemId";
-    public static final String GRADE = "grade";
-    private Poem poem;
+    public static final String POEM_INDEX = "poemIndex";
+    public static final String POEM_ID_LIST = "poemIdList";
+    // private Poem poem;
+    private Cursor cursor;
+    private SQLiteDatabase db;
+    private ArrayList<Integer> poemIdList;
+    private int poemId;
+    private int poemTotal;
+    private int poemIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poem_detail);
-        int poemId = (Integer) getIntent().getExtras().get(POEM_ID);
-//        int grade = (Integer) getIntent().getExtras().get(GRADE);
-//        switch (grade) {
-//            case 1:
-//                poem = Poem.poems1[poemId];
-//                break;
-//            case 3:
-//                poem = Poem.poems3[poemId];
-//                break;
-//            default:
-//                poem = Poem.poems1[poemId];
-//                break;
-//        }
+        poemId = (Integer) getIntent().getExtras().get(POEM_ID);
 
-//        TextView title = findViewById(R.id.titleDetail);
-//        title.setText(poem.getTitle());
-//        TextView author = findViewById(R.id.authorDetail);
-//        author.setText(poem.getAuthor());
-//        TextView content = findViewById(R.id.contentDetail);
-//        content.setText(poem.getContent());
-//        TextView desc = findViewById(R.id.contentDesc);
-//        desc.setText(poem.getDescription());
-//        desc.setMovementMethod(new ScrollingMovementMethod());
+        poemIndex = (Integer) getIntent().getExtras().get(POEM_INDEX);
+        poemIdList = getIntent().getIntegerArrayListExtra(POEM_ID_LIST);
 
-        try {
-            SQLiteOpenHelper poemDatabaseHelper = new PoemDatabaseHelper(this);
-            SQLiteDatabase db = poemDatabaseHelper.getReadableDatabase();
-            Cursor cursor = db.query("POEMS",
-                    new String[] {"_id", "TITLE", "AUTHOR", "CONTENT", "DESCRIPTION"}, "_id = ?", new String[] {Integer.toString(poemId)},
-                    null, null, null);
+        if(poemIndex == 0) {
+            Button prevButton = findViewById(R.id.poem_prev);
+            prevButton.setVisibility(View.INVISIBLE);
+        }
+        poemTotal = poemIdList.size();
+        if(poemIndex == poemTotal - 1) {
+            Button nextButton = findViewById(R.id.poem_next);
+            nextButton.setVisibility(View.INVISIBLE);
+        }
+       
+       getPoemDetailById(poemId);
+    }
+
+    public void getPreviousOne(View view){
+        int poemNewIndex = poemIndex-1;
+        poemId = poemIdList.get(poemNewIndex);
+        Intent intent = getIntent();
+        intent.putExtra(POEM_ID, poemId);
+        intent.putExtra(PoemDetailActivity.POEM_INDEX, poemNewIndex);
+        intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
+        startActivity(intent);
+
+    }
+
+    public void getNextOne(View view){
+        int poemNewIndex = poemIndex + 1;
+        poemId = poemIdList.get(poemNewIndex);
+        Intent intent = getIntent();
+        intent.putExtra(POEM_ID, poemId);
+        intent.putExtra(PoemDetailActivity.POEM_INDEX, poemNewIndex);
+        intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
+        startActivity(intent);
+    }
+
+    public void addToRecited(View view){
+
+    }
+
+    private void getPoemDetailById(int id) {
+
+        try{
+            SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
+            db = databaseHelper.getReadableDatabase();
+            cursor = db.query("POEM", new String[]{"TITLE", "AUTHOR", "CONTENT", "DESCRIPTION"},"_id = ?", new String[]{Integer.toString(poemId)}, null, null, null);
             if (cursor.moveToFirst()) {
-                String title = cursor.getString(1);
-                String author = cursor.getString(2);
-                String content = cursor.getString(3);
-                String desc = cursor.getString(4);
-
+                String title = cursor.getString(0);
+                String author = cursor.getString(1);
+                String content = cursor.getString(2);
+                String description = cursor.getString(3);
                 TextView titleView = findViewById(R.id.titleDetail);
                 titleView.setText(title);
                 TextView authorView = findViewById(R.id.authorDetail);
@@ -69,15 +94,15 @@ public class PoemDetailActivity extends AppCompatActivity {
                 TextView contentView = findViewById(R.id.contentDetail);
                 contentView.setText(content);
                 TextView descView = findViewById(R.id.contentDesc);
-                descView.setText(desc);
+                descView.setText(description);
                 descView.setMovementMethod(new ScrollingMovementMethod());
             }
             cursor.close();
             db.close();
-        } catch(SQLiteException e) {
-            Toast toast  = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+        } catch (SQLiteException e) {
+            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
-
         }
+
     }
 }
