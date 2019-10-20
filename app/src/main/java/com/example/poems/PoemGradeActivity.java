@@ -45,6 +45,8 @@ public class PoemGradeActivity extends ListActivity {
     private Cursor cursor;
     private SQLiteDatabase db;
     private int poemId;
+    private int poemTotal;
+    private ArrayList<Integer> poemIdList = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +73,10 @@ public class PoemGradeActivity extends ListActivity {
             db = poemDatabaseHelper.getReadableDatabase();
             cursor = db.query("POEMS",
                     new String[] {"_id", "TITLE"}, "grade = ?", new String[] {Integer.toString(grade)},
-                    null, null, null);
-            if (cursor.moveToFirst()) {
+                    null, null, "_id");
+            while (cursor.moveToNext()) {
                 poemId = cursor.getInt(0);
+                poemIdList.add(poemId);
             }
             CursorAdapter cursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,
                     cursor, new String[]{"TITLE"}, new int[]{android.R.id.text1}, 0);
@@ -88,8 +91,12 @@ public class PoemGradeActivity extends ListActivity {
 
     public void onListItemClick(ListView listView, View itemView, int position, long id) {
         Intent intent = new Intent(PoemGradeActivity.this, PoemDetailActivity.class);
+        if (cursor.moveToPosition(position)) {
+            poemId = cursor.getInt(0);
+        }
         intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
-//        intent.putExtra(PoemDetailActivity.GRADE, grade);
+        intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
+        intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
         startActivity(intent);
     }
 
