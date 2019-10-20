@@ -37,6 +37,7 @@
         android:layout_marginTop="79dp"
         android:layout_marginEnd="243dp"
         android:text="@string/grade_two"
+        android:onClick="openGradeTwo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/grade_one" />
@@ -61,6 +62,7 @@
         android:layout_marginStart="110dp"
         android:layout_marginTop="79dp"
         android:layout_marginEnd="243dp"
+        android:onClick="openGradeFour"
         android:text="@string/grade_four"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +75,7 @@
         android:layout_marginStart="110dp"
         android:layout_marginTop="79dp"
         android:layout_marginEnd="243dp"
+        android:onClick="openGradeFive"
         android:text="@string/grade_five"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 .idea
+/app/build/*
+/app/src/main/java/com/example/poems/*DatabaseHelper.java
+/gradle

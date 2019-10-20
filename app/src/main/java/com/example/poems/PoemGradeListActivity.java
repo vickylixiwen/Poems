@@ -31,6 +31,24 @@ public class PoemGradeListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openGradeTwo(View view) {
+        Intent intent = new Intent(this, PoemGradeActivity.class);
+        intent.putExtra(PoemGradeActivity.GRADE, 2);
+        startActivity(intent);
+    }
+
+    public void openGradeFour(View view) {
+        Intent intent = new Intent(this, PoemGradeActivity.class);
+        intent.putExtra(PoemGradeActivity.GRADE, 4);
+        startActivity(intent);
+    }
+
+    public void openGradeFive(View view) {
+        Intent intent = new Intent(this, PoemGradeActivity.class);
+        intent.putExtra(PoemGradeActivity.GRADE, 5);
+        startActivity(intent);
+    }
+
 //    public void contactUs(View view) {
 //        Intent intent = new Intent(Intent.ACTION_SEND);
 //        intent.setType("text/plain");
