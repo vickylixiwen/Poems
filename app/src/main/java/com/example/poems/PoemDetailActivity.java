@@ -2,16 +2,19 @@ package com.example.poems;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ public class PoemDetailActivity extends AppCompatActivity {
     public static final String POEM_ID = "poemId";
     public static final String POEM_INDEX = "poemIndex";
     public static final String POEM_ID_LIST = "poemIdList";
+    public static final String POEM_IS_RECITED = "poemIsRecited";
     // private Poem poem;
     private Cursor cursor;
     private SQLiteDatabase db;
@@ -33,13 +37,16 @@ public class PoemDetailActivity extends AppCompatActivity {
     private int poemId;
     private int poemTotal;
     private int poemIndex;
+    private boolean poemIsRecited;
+    private Button recitedButton;
+    private ImageView recitedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poem_detail);
         poemId = (Integer) getIntent().getExtras().get(POEM_ID);
-
+        getPoemDetailById(poemId);
         poemIndex = (Integer) getIntent().getExtras().get(POEM_INDEX);
         poemIdList = getIntent().getIntegerArrayListExtra(POEM_ID_LIST);
 
@@ -53,7 +60,7 @@ public class PoemDetailActivity extends AppCompatActivity {
             nextButton.setVisibility(View.INVISIBLE);
         }
        
-       getPoemDetailById(poemId);
+
     }
 
     public void getPreviousOne(View view){
@@ -78,7 +85,7 @@ public class PoemDetailActivity extends AppCompatActivity {
     }
 
     public void addToRecited(View view){
-
+        new UpdatePoemTask().execute(poemId);
     }
 
     private void getPoemDetailById(int id) {
@@ -101,6 +108,7 @@ public class PoemDetailActivity extends AppCompatActivity {
                 TextView descView = findViewById(R.id.contentDesc);
                 descView.setText(description);
                 descView.setMovementMethod(new ScrollingMovementMethod());
+                poemIsRecited = (cursor.getInt(4) == 1);
             }
             cursor.close();
             db.close();
@@ -109,5 +117,38 @@ public class PoemDetailActivity extends AppCompatActivity {
             toast.show();
         }
 
+    }
+
+    private class UpdatePoemTask extends AsyncTask<Integer, Void, Boolean> {
+
+        ContentValues poemValues;
+
+        protected void onPreExecute() {
+            poemValues = new ContentValues();
+            poemValues.put("IS_PASS", true);
+        }
+
+        protected Boolean doInBackground(Integer... poemId) {
+            int id = poemId[0];
+            SQLiteOpenHelper poemDatabaseHelper = new PoemDatabaseHelper(PoemDetailActivity.this);
+            try {
+                SQLiteDatabase db = poemDatabaseHelper.getWritableDatabase();
+                db.update("Poem", poemValues, "_id = ?", new String[]{Integer.toString(id)});
+                db.close();
+                return true;
+            } catch (SQLiteException e) {
+                return false;
+            }
+        }
+
+        protected void onPostExecute(Boolean success) {
+            if(!success) {
+                Toast toast = Toast.makeText(PoemDetailActivity.this, "Database unavailable", Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                recitedButton.setVisibility(View.INVISIBLE);
+                recitedImage.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }
