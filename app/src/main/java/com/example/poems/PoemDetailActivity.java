@@ -32,7 +32,7 @@ public class PoemDetailActivity extends AppCompatActivity {
     public static final String POEM_IS_RECITED = "poemIsRecited";
     // private Poem poem;
     private Cursor cursor;
-    private SQLiteDatabase db;
+//    private SQLiteDatabase db;
     private ArrayList<Integer> poemIdList;
     private int poemId;
     private int poemTotal;
@@ -49,20 +49,32 @@ public class PoemDetailActivity extends AppCompatActivity {
         getPoemDetailById(poemId);
         poemIndex = (Integer) getIntent().getExtras().get(POEM_INDEX);
         poemIdList = getIntent().getIntegerArrayListExtra(POEM_ID_LIST);
-
+//      hide the previous button for the first poem
         if(poemIndex == 0) {
             Button prevButton = findViewById(R.id.poem_prev);
             prevButton.setVisibility(View.INVISIBLE);
         }
         poemTotal = poemIdList.size();
+//        hide the next button for the last poem
         if(poemIndex == poemTotal - 1) {
             Button nextButton = findViewById(R.id.poem_next);
             nextButton.setVisibility(View.INVISIBLE);
         }
-       
-
+//      已经背出来的古诗，隐藏"背出来了"按钮，显示已经背出来图片
+        if (poemIsRecited) {
+            Button recitedButton = findViewById(R.id.poem_recited);
+            recitedButton.setVisibility(View.INVISIBLE);
+            ImageView recitedImage = findViewById(R.id.img_recited);
+            recitedImage.setVisibility(View.VISIBLE);
+        } else {
+            recitedButton = findViewById(R.id.poem_recited);
+            recitedButton.setVisibility(View.VISIBLE);
+            recitedImage = findViewById(R.id.img_recited);
+            recitedImage.setVisibility(View.INVISIBLE);
+        }
     }
 
+//    获取前一首诗
     public void getPreviousOne(View view){
         int poemNewIndex = poemIndex-1;
         poemId = poemIdList.get(poemNewIndex);
@@ -71,9 +83,9 @@ public class PoemDetailActivity extends AppCompatActivity {
         intent.putExtra(PoemDetailActivity.POEM_INDEX, poemNewIndex);
         intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
         startActivity(intent);
-
     }
 
+//    获取后一首诗
     public void getNextOne(View view){
         int poemNewIndex = poemIndex + 1;
         poemId = poemIdList.get(poemNewIndex);
@@ -84,6 +96,7 @@ public class PoemDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+//    加入到已经背出来的古诗列表中
     public void addToRecited(View view){
         new UpdatePoemTask().execute(poemId);
     }
@@ -92,8 +105,8 @@ public class PoemDetailActivity extends AppCompatActivity {
 
         try{
             SQLiteOpenHelper databaseHelper = new PoemDatabaseHelper(this);
-            db = databaseHelper.getReadableDatabase();
-            cursor = db.query("POEM", new String[]{"TITLE", "AUTHOR", "CONTENT", "DESCRIPTION"},"_id = ?", new String[]{Integer.toString(poemId)}, null, null, null);
+            SQLiteDatabase db = databaseHelper.getReadableDatabase();
+            cursor = db.query("POEM", new String[]{"TITLE", "AUTHOR", "CONTENT", "DESCRIPTION", "IS_PASS"},"_id = ?", new String[]{Integer.toString(poemId)}, null, null, null);
             if (cursor.moveToFirst()) {
                 String title = cursor.getString(0);
                 String author = cursor.getString(1);
