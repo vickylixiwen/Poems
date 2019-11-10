@@ -1,7 +1,6 @@
-package com.example.poems;
+package com.example.poems.poem;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,12 +8,12 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+
+import com.example.poems.DatabaseHelper;
 
 import java.util.ArrayList;
 
@@ -58,7 +57,7 @@ public class PoemGradeActivity extends ListActivity {
         grade = (Integer) getIntent().getExtras().get(GRADE);
 
         try {
-            SQLiteOpenHelper poemDatabaseHelper = new PoemDatabaseHelper(this);
+            SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(this);
             db = poemDatabaseHelper.getReadableDatabase();
             cursor = db.query("POEM",
                     new String[] {"_id", "TITLE", "IS_PASS"}, "grade = ?", new String[] {Integer.toString(grade)},

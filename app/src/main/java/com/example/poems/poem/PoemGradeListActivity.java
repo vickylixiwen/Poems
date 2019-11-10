@@ -1,8 +1,10 @@
-package com.example.poems;
+package com.example.poems.poem;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.poems.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

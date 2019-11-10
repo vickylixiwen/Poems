@@ -17,10 +17,10 @@ public class Idiom {
             new Idiom("成也萧何，败也萧何", "“成也萧何，败也萧何”是一句成语，为民间对西汉建国功臣韩信一生的经典概括。“成也萧何”是指韩信成为大将军是萧何推荐的；“败也萧何”是指韩信被杀是萧何出的计谋。不论是成功还是败亡都是由于同一个人。", "“成也萧何，败也萧何”是一句成语，为民间对西汉建国功臣韩信一生的经典概括。")
     };
 
-    private Idiom(String frameName, String frameSource, String frameMeaning) {
-        this.idiomName = frameName;
-        this.idiomSource = frameSource;
-        this.idiomMeaning = frameMeaning;
+    private Idiom(String idiomName, String idiomSource, String idiomMeaning) {
+        this.idiomName = idiomName;
+        this.idiomSource = idiomSource;
+        this.idiomMeaning = idiomMeaning;
     }
 
     public String getIdiomName() {

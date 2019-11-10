@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PoemDetailActivity">
+    tools:context=".poem.PoemDetailActivity">
 
 
     <LinearLayout
@@ -16,7 +16,7 @@
             android:id="@+id/poem_prev"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_weight="0.05"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
             android:text="@string/poem_prev"
@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/titleDetail"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
@@ -38,19 +38,16 @@
             android:id="@+id/poem_next"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_weight="0.05"
             android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
             android:text="@string/poem_next"
             android:onClick="getNextOne"/>
 
         <Button
             android:id="@+id/poem_recited"
-            android:layout_width="100dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
+            android:layout_weight="0.05"
             android:text="@string/poem_recited"
             android:onClick="addToRecited"/>
 

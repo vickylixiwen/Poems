@@ -24,12 +24,10 @@
     <string name="poem_recited">背出来啦！</string>
     <string-array name="main_list">
         <item>古诗词</item>
-        <item>英语单词</item>
-        <item>Big English2</item>
-        <item>New Concept English</item>
         <item>成语典故</item>
-        <item>英语错题整理</item>
         <item>语文词语、近、反义词</item>
+        <item>英语单词</item>
+        <item>英语错题整理</item>
     </string-array>
     <string-array name="poem_grade_one_list">
         <item>咏鹅</item>

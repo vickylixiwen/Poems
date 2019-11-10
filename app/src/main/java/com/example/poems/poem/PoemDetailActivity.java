@@ -1,4 +1,4 @@
-package com.example.poems;
+package com.example.poems.poem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.poems.DatabaseHelper;
+import com.example.poems.R;
 
 import java.util.ArrayList;
 
@@ -104,7 +106,7 @@ public class PoemDetailActivity extends AppCompatActivity {
     private void getPoemDetailById(int id) {
 
         try{
-            SQLiteOpenHelper databaseHelper = new PoemDatabaseHelper(this);
+            SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
             SQLiteDatabase db = databaseHelper.getReadableDatabase();
             cursor = db.query("POEM", new String[]{"TITLE", "AUTHOR", "CONTENT", "DESCRIPTION", "IS_PASS"},"_id = ?", new String[]{Integer.toString(poemId)}, null, null, null);
             if (cursor.moveToFirst()) {
@@ -143,7 +145,7 @@ public class PoemDetailActivity extends AppCompatActivity {
 
         protected Boolean doInBackground(Integer... poemId) {
             int id = poemId[0];
-            SQLiteOpenHelper poemDatabaseHelper = new PoemDatabaseHelper(PoemDetailActivity.this);
+            SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(PoemDetailActivity.this);
             try {
                 SQLiteDatabase db = poemDatabaseHelper.getWritableDatabase();
                 db.update("Poem", poemValues, "_id = ?", new String[]{Integer.toString(id)});

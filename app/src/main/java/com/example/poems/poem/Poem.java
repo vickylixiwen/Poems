@@ -1,4 +1,4 @@
-package com.example.poems;
+package com.example.poems.poem;
 
 public class Poem {
     private String title;

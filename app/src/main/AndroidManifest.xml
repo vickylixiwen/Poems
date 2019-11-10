@@ -14,9 +14,9 @@
         <activity android:name=".IdiomDetailActivity" />
         <activity android:name=".IdiomListActivity" />
         <activity android:name=".VocabularyActivity" />
-        <activity android:name=".PoemDetailActivity" />
-        <activity android:name=".PoemGradeActivity" />
-        <activity android:name=".PoemGradeListActivity" />
+        <activity android:name=".poem.PoemDetailActivity" />
+        <activity android:name=".poem.PoemGradeActivity" />
+        <activity android:name=".poem.PoemGradeListActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
