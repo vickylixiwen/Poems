@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#DCDCDC"
+    android:layout_gravity="center_vertical"
+    tools:context=".poem.PoemListActivity">
+
+    <TextView
+        android:id="@+id/grade_list_title"
+        android:background="#8B8989"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="@string/grade_one_title"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <ListView
+        android:id="@+id/poem_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"
+        android:entries="@array/poem_grade_one_list"
+        android:scrollbars="vertical"
+        android:background="#EEE9E9"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center">
+
+
+    </ListView>
+</FrameLayout>

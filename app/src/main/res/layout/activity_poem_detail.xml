@@ -10,44 +10,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.15"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/poem_prev"
-            android:layout_width="70dp"
+            android:id="@+id/back_to_poem_list"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.05"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="@string/back_to_poem_list"
+            android:onClick="backToPoemList"/>
+
+        <Button
+            android:id="@+id/poem_prev"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
             android:text="@string/poem_prev"
             android:onClick="getPreviousOne"/>
 
-        <TextView
-            android:id="@+id/titleDetail"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="0.7"
-            android:gravity="center"
-            android:text="TextView"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="20dp" />
-
         <Button
             android:id="@+id/poem_next"
-            android:layout_width="70dp"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.05"
             android:layout_marginStart="1dp"
             android:text="@string/poem_next"
             android:onClick="getNextOne"/>
 
         <Button
             android:id="@+id/poem_recited"
-            android:layout_width="95dp"
+            android:layout_width="97dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.05"
             android:text="@string/poem_recited"
             android:onClick="addToRecited"/>
 
@@ -61,34 +56,85 @@
             android:src="@drawable/completed" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/authorDetail"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textSize="15dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="TextView" />
+        android:layout_weight="0.85"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/contentDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:textSize="30dp"
-        android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/titleDetail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/contentDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:inputType="textMultiLine"
-        android:scrollbars = "vertical"/>
+        <TextView android:id="@+id/debug_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textSize="10sp"
+            tools:ignore="SmallSp"
+            android:visibility="gone"/>
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"/>
+
+        <LinearLayout android:id="@+id/controls_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button android:id="@+id/select_tracks_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/track_selection_title"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/authorDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/contentDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textSize="30dp"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"/>
+
+        <TextView
+            android:id="@+id/contentDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

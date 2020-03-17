@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">学习</string>
     <string name="reciting">正在背诵</string>
-    <string name="main_title">类别</string>
+    <string name="main_title">古诗词列表</string>
     <string name="menu">目录</string>
     <string name="grade_one">一年级</string>
     <string name="grade_two">二年级</string>
     <string name="grade_three">三年级</string>
     <string name="grade_four">四年级</string>
     <string name="grade_five">五年级</string>
+    <string name="grade_six">六年级</string>
     <string name="recited">已背诵</string>
     <string name="grade_one_title">古诗列表</string>
     <string name="grade_one_poem1">咏鹅</string>
@@ -19,15 +20,24 @@
     <string name="grade_one_poem7">春晓</string>
     <string name="grade_one_poem8">赠汪伦</string>
     <string name="frame_title">成语典故</string>
+    <string name="back_to_poem_list">返回</string>
     <string name="poem_prev">前一首</string>
     <string name="poem_next">后一首</string>
     <string name="poem_recited">背出来啦！</string>
+    <string name="tab_recited">已完成</string>
+    <string name="tab_reciting">正在背</string>
+    <string name="tab_poem">古诗词</string>
+    <string name="tab_idiom">成语典故</string>
+    <string name="grade_button">年级列表</string>
+    <string name="poet_button">诗人列表</string>
+
     <string-array name="main_list">
-        <item>古诗词</item>
-        <item>成语典故</item>
-        <item>语文词语、近、反义词</item>
-        <item>英语单词</item>
-        <item>英语错题整理</item>
+        <item>一年级</item>
+        <item>二年级</item>
+        <item>三年级</item>
+        <item>四年级</item>
+        <item>五年级</item>
+        <item>六年级</item>
     </string-array>
     <string-array name="poem_grade_one_list">
         <item>咏鹅</item>
@@ -41,4 +51,6 @@
     <string-array name="idiom_list">
         <item>明修栈道，暗度陈仓</item>
     </string-array>
+
+    <string name="track_selection_title">Select tracks</string>
 </resources>

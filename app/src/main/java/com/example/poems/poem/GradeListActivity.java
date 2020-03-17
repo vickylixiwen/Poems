@@ -11,43 +11,49 @@ import androidx.appcompat.app.AppCompatActivity;
 /*
 this is for selecting the grade of the poems
  */
-public class PoemGradeListActivity extends AppCompatActivity {
+public class GradeListActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_poem_grade_list);
+        setContentView(R.layout.activity_grade_list);
     }
 
     // open the poem list in Grade One
     public void openGradeOne(View view) {
-        Intent intent = new Intent(this, PoemGradeActivity.class);
-        intent.putExtra(PoemGradeActivity.GRADE, 1);
+        Intent intent = new Intent(this, PoemListActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, 1);
         startActivity(intent);
     }
 
     public void openGradeThree(View view) {
-        Intent intent = new Intent(this, PoemGradeActivity.class);
-        intent.putExtra(PoemGradeActivity.GRADE, 3);
+        Intent intent = new Intent(this, PoemListActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, 3);
         startActivity(intent);
     }
 
     public void openGradeTwo(View view) {
-        Intent intent = new Intent(this, PoemGradeActivity.class);
-        intent.putExtra(PoemGradeActivity.GRADE, 2);
+        Intent intent = new Intent(this, PoemListActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, 2);
         startActivity(intent);
     }
 
     public void openGradeFour(View view) {
-        Intent intent = new Intent(this, PoemGradeActivity.class);
-        intent.putExtra(PoemGradeActivity.GRADE, 4);
+        Intent intent = new Intent(this, PoemListActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, 4);
         startActivity(intent);
     }
 
     public void openGradeFive(View view) {
-        Intent intent = new Intent(this, PoemGradeActivity.class);
-        intent.putExtra(PoemGradeActivity.GRADE, 5);
+        Intent intent = new Intent(this, PoemListActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, 5);
+        startActivity(intent);
+    }
+
+    public void openGradeSix(View view) {
+        Intent intent = new Intent(this, PoemListActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, 6);
         startActivity(intent);
     }
 
