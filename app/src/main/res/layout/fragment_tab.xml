@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/homeViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/home_tabs"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_height="50dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:icon="@drawable/tab_poem"
+                android:layout_height="50dp"
+                android:layout_width="150dp"
+                android:text="@string/tab_poem"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_recited"
+                android:icon="@drawable/recited"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:text="@string/tab_recited"/>
+            <com.google.android.material.tabs.TabItem
+                android:icon="@drawable/reciting"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:text="@string/tab_reciting"/>
+            <com.google.android.material.tabs.TabItem
+                android:icon="@drawable/tab_idiom"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:text="@string/tab_idiom"/>
+
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
+
+</ScrollView>
