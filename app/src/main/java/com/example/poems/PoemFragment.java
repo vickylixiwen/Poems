@@ -46,6 +46,7 @@ public class PoemFragment extends Fragment {
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
+    // it is called when android needs the fragment layout
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_poems, container, false);
