@@ -1,11 +1,7 @@
-package com.example.poems;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.poems.OUTOFDATE;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 

@@ -1,4 +1,4 @@
-package com.example.poems;
+package com.example.poems.OUTOFDATE;
 
 public class Synonym {
     private String word;

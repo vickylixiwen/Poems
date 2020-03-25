@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SynonymActivity"></activity>
-        <activity android:name=".WrongListActivity" />
+        <activity android:name=".OUTOFDATE.SynonymActivity"></activity>
+        <activity android:name=".OUTOFDATE.WrongListActivity" />
         <activity android:name=".IdiomDetailActivity" />
         <activity android:name=".IdiomListActivity" />
-        <activity android:name=".VocabularyActivity" />
+        <activity android:name=".OUTOFDATE.VocabularyActivity" />
         <activity android:name=".poem.PoemDetailActivity" />
         <activity android:name=".poem.PoemListActivity" />
         <activity android:name=".poem.GradeListActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.poems;
+package com.example.poems.home;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.poems.R;
 import com.example.poems.poem.PoemListActivity;
 
 public class PoemFragment extends Fragment {

@@ -30,6 +30,7 @@
     <string name="tab_idiom">成语典故</string>
     <string name="grade_button">年级列表</string>
     <string name="poet_button">诗人列表</string>
+    <string name="reciting_list">正在背诵的古诗</string>
 
     <string-array name="main_list">
         <item>一年级</item>

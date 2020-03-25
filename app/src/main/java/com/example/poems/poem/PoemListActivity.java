@@ -68,20 +68,19 @@ public class PoemListActivity extends AppCompatActivity {
 
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                Intent intent = new Intent(PoemListActivity.this, PoemDetailActivity.class);
-                 if (cursor.moveToPosition(position)) {
-                    poemId = cursor.getInt(0);
-                    poemIsRecited = (cursor.getInt(2) == 1);// 0 - false; 1 - true
-                    pId = cursor.getInt(3);
-                }
-                intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
-                intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
-                intent.putExtra(PoemDetailActivity.P_ID, pId);
-                intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
-                intent.putExtra(PoemDetailActivity.POEM_IS_RECITED, poemIsRecited);
-                intent.putExtra(PoemDetailActivity.GRADE, grade);
-                startActivity(intent);
-
+            Intent intent = new Intent(PoemListActivity.this, PoemDetailActivity.class);
+            if (cursor.moveToPosition(position)) {
+                poemId = cursor.getInt(0);
+                poemIsRecited = (cursor.getInt(2) == 1);// 0 - false; 1 - true
+                pId = cursor.getInt(3);
+            }
+            intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
+            intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
+            intent.putExtra(PoemDetailActivity.P_ID, pId);
+            intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
+            intent.putExtra(PoemDetailActivity.POEM_IS_RECITED, poemIsRecited);
+            intent.putExtra(PoemDetailActivity.GRADE, grade);
+            startActivity(intent);
             }
         };
         ListView listView = findViewById(R.id.poem_list);
@@ -105,8 +104,6 @@ public class PoemListActivity extends AppCompatActivity {
                 grade_text = "五年级";
                 break;
             case 6:
-                grade_text = "六年级";
-                break;
             default:
                 grade_text = "六年级";
                 break;

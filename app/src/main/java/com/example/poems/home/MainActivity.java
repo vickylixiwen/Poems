@@ -1,25 +1,15 @@
-package com.example.poems;
+package com.example.poems.home;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 //import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ListView;
 
-import com.example.poems.poem.GradeListActivity;
-import com.example.poems.poem.PoemListActivity;
+import com.example.poems.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener;
 
@@ -44,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 
 
-
+        System.out.println("++++++++++++++");
 
         tabs.addOnTabSelectedListener(new OnTabSelectedListener() {
             @Override
@@ -77,18 +67,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment tab = null;
+            Fragment tab;
             switch (position) {
-                case 0:
-                    return new PoemFragment();
                 case 1:
                     tab = new RecitedFragment();
                     return tab;
                 case 2:
-                    tab = new TabFragment();
+                    tab = new RecitingFragment();
                     return tab;
+                case 3:
+                    tab = new IdiomFragment();
+                    return tab;
+                case 0:
                 default:
-                    return null;
+                    return new PoemFragment();
             }
         }
 
