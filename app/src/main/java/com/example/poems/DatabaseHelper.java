@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "Poems"; //DB name
-    private static final int DB_VERSION = 5; //DB version
+    private static final int DB_VERSION = 7; //DB version
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -22,15 +22,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         updateMyDatabase(db, oldVersion, newVersion);
-
-
     }
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 1) {
+        if (oldVersion < 7) {
 //            create db for gushi, chengyu, yingyucihui, cuotiji
             db.execSQL("CREATE TABLE POEM (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "POEM_ID INTEGER, TITLE TEXT, AUTHOR TEXT, CONTENT TEXT, DESCRIPTION TEXT, GRADE INTEGER, IS_PASS NUMERIC);");
+                    "POEM_ID INTEGER, TITLE TEXT, AUTHOR TEXT, CONTENT TEXT, DESCRIPTION TEXT, GRADE INTEGER, DYNASTY TEXT, " +
+                    "CATEGORY TEXT, IS_PASS NUMERIC, IS_RECITING NUMERIC, PINYIN TEXT);");
 
             db.execSQL("CREATE TABLE IDIOM (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "IDIOM_ID INTEGER, IDIOM_NAME TEXT, IDIOM_SOURCE TEXT, IDIOM_MEANINGS TEXT);");
