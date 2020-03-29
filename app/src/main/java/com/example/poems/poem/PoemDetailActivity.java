@@ -22,6 +22,8 @@ import android.net.Uri;
 import com.example.poems.DatabaseHelper;
 import com.example.poems.R;
 
+import com.example.poems.home.MainActivity;
+import com.example.poems.home.RecitingFragment;
 import com.google.android.exoplayer2.PlaybackPreparer;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -47,6 +49,7 @@ public class PoemDetailActivity extends AppCompatActivity
     public static final String POEM_ID_LIST = "poemIdList";
     public static final String POEM_IS_RECITED = "poemIsRecited";
     public static final String GRADE = "grade";
+    public static final String PAGE_SOURCE = "pageSource";
 
     // private Poem poem;
     private Cursor cursor;
@@ -58,6 +61,7 @@ public class PoemDetailActivity extends AppCompatActivity
     private int poemIndex;
     private int grade;
     private boolean poemIsRecited;
+    private String pageSource;
     private Button recitedButton;
     private ImageView recitedImage;
     private PlayerView playerView;
@@ -88,6 +92,8 @@ public class PoemDetailActivity extends AppCompatActivity
         getPoemDetailById(poemId);
         poemIndex = (Integer) getIntent().getExtras().get(POEM_INDEX);
         poemIdList = getIntent().getIntegerArrayListExtra(POEM_ID_LIST);
+        pageSource = (String) getIntent().getExtras().get(PAGE_SOURCE);
+
 //      hide the previous button for the first poem
         if(poemIndex == 0) {
             Button prevButton = findViewById(R.id.poem_prev);
@@ -204,6 +210,7 @@ public class PoemDetailActivity extends AppCompatActivity
         protected void onPreExecute() {
             poemValues = new ContentValues();
             poemValues.put("IS_PASS", true);
+            poemValues.put("IS_RECITING", false);
         }
 
         protected Boolean doInBackground(Integer... poemId) {
@@ -367,10 +374,37 @@ public class PoemDetailActivity extends AppCompatActivity
 //        updateButtonVisibility();
     }
 
+    public void backToList(View view) {
+        switch(pageSource) {
+            case "recitedList":
+                backToRecitedList(view);
+                break;
+            case "recitingList":
+                backToRecitingList(view);
+                break;
+            default:
+                backToPoemList(view);
+                break;
+        }
+    }
+
     public void backToPoemList(View view) {
         grade = (Integer) getIntent().getExtras().get(GRADE);
         Intent intent = new Intent(PoemDetailActivity.this, PoemListActivity.class);
         intent.putExtra(PoemListActivity.GRADE, grade);
+        startActivity(intent);
+    }
+
+    public void backToRecitedList(View view) {
+        Intent intent = new Intent(PoemDetailActivity.this, MainActivity.class);
+        intent.putExtra(PoemListActivity.GRADE, grade);
+        startActivity(intent);
+    }
+
+    // TODO: NEED TO CHANGE TO BACK TO THE RECITING FRAGMENT INSTEAD OF THE MAIN ACTIVITY
+    public void backToRecitingList(View view) {
+        Intent intent = new Intent(PoemDetailActivity.this, MainActivity.class);
+//        intent.putExtra(PoemListActivity.GRADE, grade);
         startActivity(intent);
     }
 }
