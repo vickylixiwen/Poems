@@ -60,6 +60,7 @@ public class PoemListActivity extends AppCompatActivity {
     private ArrayList<Integer> poemIdList = new ArrayList<Integer>();
     private boolean poemIsRecited;
     private String grade_text = "";
+    private String pageSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +75,14 @@ public class PoemListActivity extends AppCompatActivity {
                 poemIsRecited = (cursor.getInt(2) == 1);// 0 - false; 1 - true
                 pId = cursor.getInt(3);
             }
+            pageSource = "poemList";
             intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
             intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
             intent.putExtra(PoemDetailActivity.P_ID, pId);
             intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, poemIdList);
             intent.putExtra(PoemDetailActivity.POEM_IS_RECITED, poemIsRecited);
             intent.putExtra(PoemDetailActivity.GRADE, grade);
+            intent.putExtra(PoemDetailActivity.PAGE_SOURCE, pageSource);
             startActivity(intent);
             }
         };

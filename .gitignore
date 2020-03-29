@@ -15,4 +15,4 @@
 .idea
 /grade
 /app/build/*
-/app/src/main/java/com/example/poems/poem/PoemDatabaseHelper.java
+/app/src/main/java/com/example/poems/PoemDatabaseHelper.java
