@@ -51,11 +51,9 @@ public class RecitingFragment extends Fragment {
 
         // list the reciting poems, poems with is_reciting == true
         ListView listView = getView().findViewById(R.id.reciting_list);
-        System.out.println("----++++++--------");
         try {
             SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
             db = poemDatabaseHelper.getReadableDatabase();
-            System.out.println("--123455----------");
             cursor = db.query("POEM",
                     new String[] {"_id", "TITLE", "POEM_ID", "IS_PASS"}, "IS_RECITING = ?", new String[] {Integer.toString(1)},
                     null, null, "_id", "1,10");

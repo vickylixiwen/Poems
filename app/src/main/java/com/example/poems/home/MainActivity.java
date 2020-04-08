@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     tab = new IdiomFragment();
                     return tab;
+                case 4:
+                    tab = new SearchFragment();
+                    return tab;
                 case 0:
                 default:
                     return new PoemFragment();

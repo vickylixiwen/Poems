@@ -49,6 +49,11 @@
             android:layout_height="50dp"
             android:layout_width="50dp"
             android:text="@string/tab_idiom"/>
+        <com.google.android.material.tabs.TabItem
+            android:icon="@drawable/tab_search"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:text="@string/tab_search"/>
 
     </com.google.android.material.tabs.TabLayout>
 

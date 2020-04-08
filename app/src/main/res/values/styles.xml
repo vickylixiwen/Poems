@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+<!--    <style name="ErrorText" parent="TextAppearance.AppCompat">-->
+<!--        <item name="android:textColor">@android:color/red</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--    </style>-->
+
+<!--    <style name="HintText" parent="TextAppearance.AppCompat">-->
+<!--        <item name="android:textColor">@android:color/white</item>-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--    </style>-->
+
+<!--    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">-->
+<!--        &lt;!&ndash; reference our hint & error styles &ndash;&gt;-->
+<!--        <item name="hintTextAppearance">@style/HintText</item>-->
+<!--        <item name="errorTextAppearance">@style/ErrorText</item>-->
+<!--        <item name="android:textColor">@color/colorUserInput</item>-->
+<!--        <item name="android:textColorHint">@color/colorUnfocused</item>-->
+<!--        <item name="colorControlNormal">@color/colorWhite</item>-->
+<!--        <item name="colorControlActivated">@color/colorBlue</item>-->
+<!--        <item name="colorControlHighlight">@color/colorGreen</item>-->
+<!--    </style>-->
 </resources>

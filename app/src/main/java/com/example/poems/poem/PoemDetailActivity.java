@@ -382,6 +382,9 @@ public class PoemDetailActivity extends AppCompatActivity
             case "recitingList":
                 backToRecitingList(view);
                 break;
+            case "searchList":
+                backToSearchList(view);
+                break;
             default:
                 backToPoemList(view);
                 break;
@@ -403,6 +406,12 @@ public class PoemDetailActivity extends AppCompatActivity
 
     // TODO: NEED TO CHANGE TO BACK TO THE RECITING FRAGMENT INSTEAD OF THE MAIN ACTIVITY
     public void backToRecitingList(View view) {
+        Intent intent = new Intent(PoemDetailActivity.this, MainActivity.class);
+//        intent.putExtra(PoemListActivity.GRADE, grade);
+        startActivity(intent);
+    }
+
+    public void backToSearchList(View view) {
         Intent intent = new Intent(PoemDetailActivity.this, MainActivity.class);
 //        intent.putExtra(PoemListActivity.GRADE, grade);
         startActivity(intent);
