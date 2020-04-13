@@ -32,11 +32,12 @@ public class SearchFragment extends Fragment {
     private Cursor cursor;
     private SQLiteDatabase db;
     private int poemId;
-    private ArrayList<Integer> recitingIdList = new ArrayList<Integer>();
+    private ArrayList<Integer> searchResultIdList = new ArrayList<Integer>();
     private int pId;
     private boolean poemIsRecited;
     EditText searchText;
     private ArrayAdapter<String> adapter;
+    String searchTextValue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,30 +49,30 @@ public class SearchFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         searchText = getView().findViewById(R.id.search_text_field);
         Button searchButton = getView().findViewById(R.id.search_button);
-
         searchText.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                adapter.getFilter().filter(cs);
+                searchTextValue = searchText.getText().toString();
             }
 
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-                Toast.makeText(getApplicationContext(),"before text change",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"before text change",Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void afterTextChanged(Editable arg0) {
-                Toast.makeText(getApplicationContext(),"after text change",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"after text change",Toast.LENGTH_LONG).show();
             }
         });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!searchText.getText().toString().isEmpty()) {
+                if(!searchTextValue.isEmpty()) {
                     Toast.makeText(getActivity(), "you have searched " +  searchText.getText().toString(), Toast.LENGTH_LONG).show();
+                    startSearch(searchTextValue);
                 } else {
                     searchText.setError("请输入古诗/词名");
                 }
@@ -131,6 +132,35 @@ public class SearchFragment extends Fragment {
 //
 //        listView.setOnItemClickListener(itemClickListener);
 
+    }
+
+    public void startSearch(String title) {
+        ListView listView = getView().findViewById(R.id.result_list);
+        try {
+            SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
+            db = poemDatabaseHelper.getReadableDatabase();
+            System.out.println("--123455----------");
+            System.out.println(title);
+            cursor = db.query("POEM",
+                    new String[] {"_id", "TITLE", "POEM_ID", "IS_PASS"}, "TITLE = ?", new String[] {title},
+                    null, null, "_id", "1,10");
+            System.out.println(cursor);
+            while (cursor.moveToNext()) {
+                poemId = cursor.getInt(0);
+                System.out.println("--111111----------");
+                System.out.println(poemId);
+                searchResultIdList.add(poemId);
+            }
+            CursorAdapter cursorAdapter = new SimpleCursorAdapter(getContext(), R.layout.reciting_item,
+                    cursor, new String[]{"TITLE"}, new int[]{R.id.poem_name}, 0);
+            listView.setAdapter(cursorAdapter);
+
+        } catch(SQLiteException e) {
+            System.out.print(e);
+            Toast toast  = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+
+        }
     }
 
 }

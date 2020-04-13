@@ -125,7 +125,7 @@ public class PoemDetailActivity extends AppCompatActivity
         selectTracksButton = findViewById(R.id.select_tracks_button);
         selectTracksButton.setOnClickListener(this);
         // for poems with audio
-        if (1009 == pId) {
+        if (1009 == pId  || 6005 == pId) {
             playerView.setVisibility(View.VISIBLE);
             playerView.setControllerVisibilityListener(this);
             Uri mp4VideoUri = Uri.parse("asset:///jingyesi.mp4");
