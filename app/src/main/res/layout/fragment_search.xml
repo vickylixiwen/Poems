@@ -30,8 +30,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search_text_field"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text"
                 android:cursorVisible="true"
                 android:text=""
@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/recited_list"
+        android:id="@+id/result_list"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
