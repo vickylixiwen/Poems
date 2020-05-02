@@ -24,6 +24,7 @@
             android:textStyle="bold" />
 
         <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_gravity="right"
@@ -54,7 +55,6 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="50dp"
         android:textSize="30dp"
-        android:entries="@array/main_list"
         android:layout_gravity="center_horizontal"
         android:layout_centerVertical="true"
         android:divider="@android:color/transparent"

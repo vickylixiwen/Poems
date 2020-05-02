@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.poems.R;
 import com.example.poems.poem.PoemListActivity;
 
-public class PoemFragment extends Fragment {
+public class PoetsFragment extends Fragment {
     TextView textView;
 //    ThingsAdapter adapter;
     FragmentActivity listener;
@@ -50,7 +50,7 @@ public class PoemFragment extends Fragment {
     // it is called when android needs the fragment layout
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_poems, container, false);
+        return inflater.inflate(R.layout.fragment_gradelist, container, false);
     }
 
     // This event is triggered soon after onCreateView().

@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         TabLayout tabs = findViewById(R.id.home_tabs);
 //      Instantiate a ViewPager and a PagerAdapter.
         viewPager = findViewById(R.id.view_pager);
@@ -33,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 
-
-        System.out.println("++++++++++++++");
 
         tabs.addOnTabSelectedListener(new OnTabSelectedListener() {
             @Override
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     return tab;
                 case 0:
                 default:
-                    return new PoemFragment();
+                    return new GradeListFragment();
             }
         }
 

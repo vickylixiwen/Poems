@@ -11,6 +11,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,7 +72,9 @@ public class SearchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!searchTextValue.isEmpty()) {
+                if(!searchTextValue.isEmpty() || searchTextValue != "") {
+                    //close the soft keyboard
+                    searchText.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     Toast.makeText(getActivity(), "you have searched " +  searchText.getText().toString(), Toast.LENGTH_LONG).show();
                     startSearch(searchTextValue);
                 } else {
@@ -78,60 +82,6 @@ public class SearchFragment extends Fragment {
                 }
             }
         });
-        // list the reciting poems, poems with is_reciting == true
-//        ListView listView = getView().findViewById(R.id.reciting_list);
-//        System.out.println("----++++++--------");
-//        try {
-//            SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
-//            db = poemDatabaseHelper.getReadableDatabase();
-//            System.out.println("--123455----------");
-//            cursor = db.query("POEM",
-//                    new String[] {"_id", "TITLE", "POEM_ID", "IS_PASS"}, "IS_RECITING = ?", new String[] {Integer.toString(1)},
-//                    null, null, "_id", "1,10");
-//            while (cursor.moveToNext()) {
-//                poemId = cursor.getInt(0);
-//                recitingIdList.add(poemId);
-//            }
-//            CursorAdapter cursorAdapter = new SimpleCursorAdapter(getContext(), R.layout.reciting_item,
-//                    cursor, new String[]{"TITLE"}, new int[]{R.id.poem_name}, 0);
-////            gradeOneList.setAdapter(cursorAdapter);
-//            listView.setAdapter(cursorAdapter);
-//
-//        } catch(SQLiteException e) {
-//            System.out.print(e);
-//            Toast toast  = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
-//            toast.show();
-//
-//        }
-//
-//
-//
-//
-////        ArrayAdapter<Idiom> adapter = new ArrayAdapter<Idiom>(this.getContext(), android.R.layout.simple_list_item_1, idioms);
-//////        ListView listView = getView().findViewById(R.id.idiom_list);
-////        listView.setAdapter(adapter);
-////
-//        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-//                Intent intent = new Intent(getActivity(), PoemDetailActivity.class);
-//                if (cursor.moveToPosition(position)) {
-//                    poemId = cursor.getInt(0);
-//                    poemIsRecited = (cursor.getInt(3) == 1);// 0 - false; 1 - true
-//                    pId = cursor.getInt(2);
-//                }
-//                String pageSource = "recitingList";
-//                intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
-//                intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
-//                intent.putExtra(PoemDetailActivity.P_ID, pId);
-//                intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, recitingIdList);
-//                intent.putExtra(PoemDetailActivity.POEM_IS_RECITED, poemIsRecited);
-//                intent.putExtra(PoemDetailActivity.PAGE_SOURCE, pageSource);
-//                startActivity(intent);
-//            }
-//        };
-//
-//        listView.setOnItemClickListener(itemClickListener);
-
     }
 
     public void startSearch(String title) {
@@ -139,15 +89,13 @@ public class SearchFragment extends Fragment {
         try {
             SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
             db = poemDatabaseHelper.getReadableDatabase();
-            System.out.println("--123455----------");
             System.out.println(title);
             cursor = db.query("POEM",
-                    new String[] {"_id", "TITLE", "POEM_ID", "IS_PASS"}, "TITLE = ?", new String[] {title},
-                    null, null, "_id", "1,10");
+                    new String[] {"_id", "TITLE", "POEM_ID", "IS_PASS"}, "TITLE LIKE ?", new String[] {"%" + title + "%"},
+                    null, null, "_id");
             System.out.println(cursor);
             while (cursor.moveToNext()) {
                 poemId = cursor.getInt(0);
-                System.out.println("--111111----------");
                 System.out.println(poemId);
                 searchResultIdList.add(poemId);
             }
@@ -159,8 +107,29 @@ public class SearchFragment extends Fragment {
             System.out.print(e);
             Toast toast  = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
-
         }
+
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
+                Intent intent = new Intent(getActivity(), PoemDetailActivity.class);
+                if (cursor.moveToPosition(position)) {
+                    poemId = cursor.getInt(0);
+//                    poemIsRecited = (cursor.getInt(3) == 1);// 0 - false; 1 - true
+                    pId = cursor.getInt(2);
+                }
+                String pageSource = "searchResultList";
+                intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
+                intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
+                intent.putExtra(PoemDetailActivity.P_ID, pId);
+                intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, searchResultIdList);
+                intent.putExtra(PoemDetailActivity.POEM_IS_RECITED, poemIsRecited);
+                intent.putExtra(PoemDetailActivity.PAGE_SOURCE, pageSource);
+                startActivity(intent);
+            }
+        };
+
+        listView.setOnItemClickListener(itemClickListener);
     }
+
 
 }

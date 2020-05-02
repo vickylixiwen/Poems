@@ -385,6 +385,9 @@ public class PoemDetailActivity extends AppCompatActivity
             case "searchList":
                 backToSearchList(view);
                 break;
+            case "searchResultList":
+                backToSearchList(view);
+                break;
             default:
                 backToPoemList(view);
                 break;

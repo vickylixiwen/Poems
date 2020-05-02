@@ -35,7 +35,8 @@
                 android:inputType="text"
                 android:cursorVisible="true"
                 android:text=""
-                android:layout_marginBottom="0dp"/>
+                android:layout_marginBottom="0dp"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -48,7 +49,7 @@
 
     <ListView
         android:id="@+id/result_list"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="55dp"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
