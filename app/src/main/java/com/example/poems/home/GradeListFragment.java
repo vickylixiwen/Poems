@@ -29,11 +29,12 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.poems.DatabaseHelper;
 import com.example.poems.R;
 import com.example.poems.poem.PoemListActivity;
+import com.example.poems.poem.PoemListByAuthorActivity;
 
 import java.util.ArrayList;
 
 public class GradeListFragment extends Fragment {
-    String[] gradeList = new String[]{"一年级", "二年级", "三年级", "四年级", "五年级", "六年级"};
+    String[] gradeList = new String[]{"一年级", "二年级", "三年级", "四年级", "五年级", "六年级" , "七年级"};
     TextView textView;
 //    ThingsAdapter adapter;
     FragmentActivity listener;
@@ -41,6 +42,7 @@ public class GradeListFragment extends Fragment {
     View view;
     Adapter adapter;
     AdapterView.OnItemClickListener gradeClickListener;
+    AdapterView.OnItemClickListener authorClickListener;
     private Cursor cursor;
     private SQLiteDatabase db;
     private ArrayList<String> authorList = new ArrayList<String>();
@@ -109,8 +111,10 @@ public class GradeListFragment extends Fragment {
         listView = getView().findViewById(R.id.main_list);
 
         gradeClickListener = new AdapterView.OnItemClickListener() {
+
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                int grade = 6;
+                System.out.print((int)id);
+                int grade;
                 switch ((int)id) {
                     case 0:
                         grade = 1;
@@ -127,8 +131,12 @@ public class GradeListFragment extends Fragment {
                     case 4:
                         grade = 5;
                         break;
-                    default:
+                    case 5:
+//                    default:
                         grade = 6;
+                        break;
+                    default:
+                        grade = 7;
                         break;
                 }
                 Intent intent = new Intent(getActivity(), PoemListActivity.class);
@@ -136,6 +144,21 @@ public class GradeListFragment extends Fragment {
                 startActivity(intent);
             }
         };
+
+        authorClickListener = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
+                String author;
+                String authorDynasty = authorList.get(position);
+                if (authorDynasty.split(" ").length > 1)
+                    author = authorDynasty.split(" ")[1];
+                else
+                    author = authorDynasty;
+                Intent intent = new Intent(getActivity(), PoemListByAuthorActivity.class);
+                intent.putExtra(PoemListByAuthorActivity.AUTHOR, author);
+                startActivity(intent);
+            }
+        };
+
         adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, gradeList);
         listView.setAdapter((ListAdapter) adapter);
@@ -147,62 +170,36 @@ public class GradeListFragment extends Fragment {
 
                 switch (checkedId) {
                     case R.id.grade_button:
-                        System.out.println("grade list");
+                        adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, gradeList);
                         listView.setAdapter((ListAdapter) adapter);
                         listView.setOnItemClickListener(gradeClickListener);
                         break;
                     case R.id.poet_button:
-                        // Fragment 2
-                        System.out.println("poet list");
                         try {
-                            System.out.println("list list list");
                             SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
                             db = poemDatabaseHelper.getReadableDatabase();
                             cursor = db.query(true, "POEM",
-                                    new String[]{"_id", "AUTHOR"}, null, null, null,
+                                    new String[]{"_id", "AUTHOR"}, null, null,  "AUTHOR",
                                     null, null, null);
                             while (cursor.moveToNext()) {
                                 String author = cursor.getString(1);
-                                System.out.println(author);
                                 authorList.add(author);
                             }
-                            CursorAdapter adapter = new android.widget.SimpleCursorAdapter(getContext(), android.R.layout.simple_list_item_1,
-                                    cursor, new String[]{"AUTHOR"}, new int[]{R.id.main_list}, 0);
+                            adapter = new android.widget.SimpleCursorAdapter(getContext(), R.layout.poem_item,
+                                    cursor, new String[]{"AUTHOR"}, new int[]{R.id.poem_name}, 0);
                         } catch (SQLiteException e) {
                             System.out.print(e);
                             Toast toast = Toast.makeText(getContext(), "Database unavailable", Toast.LENGTH_SHORT);
                             toast.show();
                         }
                         listView.setAdapter((ListAdapter) adapter);
+                        listView.setOnItemClickListener(authorClickListener);
                         break;
                 }
             }
         });
 //
     }
-
-//    public CursorAdapter getPoetAdapter() {
-//        CursorAdapter cursorAdapter = null;
-//        try {
-//            SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
-//            db = poemDatabaseHelper.getReadableDatabase();
-//            cursor = db.query(true, "POEM",
-//                    new String[] {"AUTHOR"}, null,null, null,
-//                    null, null, null);
-//            while (cursor.moveToNext()) {
-//                String author = cursor.getString(0);
-//                System.out.println(author);
-//                authorList.add(author);
-//            }
-//            cursorAdapter = new android.widget.SimpleCursorAdapter(getContext(), android.R.layout.simple_list_item_1,
-//                    cursor, new String[]{"AUTHOR"}, new int[]{R.id.main_list}, 0);
-//        } catch(SQLiteException e) {
-//            System.out.print(e);
-//            Toast toast  = Toast.makeText(getContext(), "Database unavailable", Toast.LENGTH_SHORT);
-//            toast.show();
-//
-//        }
-//        return cursorAdapter;
-//    }
 
 }

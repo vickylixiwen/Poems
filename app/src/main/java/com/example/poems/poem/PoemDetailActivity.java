@@ -1,6 +1,8 @@
 package com.example.poems.poem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -388,6 +390,9 @@ public class PoemDetailActivity extends AppCompatActivity
             case "searchResultList":
                 backToSearchList(view);
                 break;
+            case "poemListByAuthor":
+                backToSearchList(view);
+                break;
             default:
                 backToPoemList(view);
                 break;
@@ -417,6 +422,13 @@ public class PoemDetailActivity extends AppCompatActivity
     public void backToSearchList(View view) {
         Intent intent = new Intent(PoemDetailActivity.this, MainActivity.class);
 //        intent.putExtra(PoemListActivity.GRADE, grade);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("pressing back");
+        Intent intent = new Intent(PoemDetailActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }
