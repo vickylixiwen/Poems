@@ -136,10 +136,10 @@ public class GradeListFragment extends Fragment {
                 startActivity(intent);
             }
         };
-//        adapter = new ArrayAdapter<String>(getContext(),
-//                android.R.layout.simple_list_item_1, gradeList);
-//        listView.setAdapter((ListAdapter) adapter);
-//        listView.setOnItemClickListener(gradeClickListener);
+        adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, gradeList);
+        listView.setAdapter((ListAdapter) adapter);
+        listView.setOnItemClickListener(gradeClickListener);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
