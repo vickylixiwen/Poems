@@ -16,6 +16,7 @@
         <activity android:name=".OUTOFDATE.VocabularyActivity" />
         <activity android:name=".poem.PoemDetailActivity" />
         <activity android:name=".poem.PoemListActivity" />
+        <activity android:name=".poem.PoemListByAuthorActivity" />
         <activity android:name=".poem.GradeListActivity" />
         <activity android:name=".home.MainActivity">
             <intent-filter>
