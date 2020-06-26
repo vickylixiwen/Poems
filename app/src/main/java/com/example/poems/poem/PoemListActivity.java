@@ -90,7 +90,6 @@ public class PoemListActivity extends AppCompatActivity {
 //        listView.setOnItemClickListener(itemClickListener);
 //        ListView gradeOneList = getListView();
         grade = (Integer) getIntent().getExtras().get(GRADE);
-        System.out.println("++++++++++++++++" + grade);
         switch (grade) {
             case 1:
                 grade_text = "一年级";
@@ -110,8 +109,14 @@ public class PoemListActivity extends AppCompatActivity {
             case 6:
                 grade_text = "六年级";
                 break;
-            default:
+            case 7:
                 grade_text = "七年级";
+                break;
+            case 8:
+                grade_text = "八年级";
+                break;
+            default:
+                grade_text = "九年级";
                 break;
         }
 

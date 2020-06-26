@@ -33,6 +33,7 @@ public class RecitedFragment extends Fragment {
 //    ThingsAdapter adapter;
     FragmentActivity listener;
     private Cursor cursor;
+    private Cursor cursorTotal;
     private SQLiteDatabase db;
     private int poemId;
     private ArrayList<Integer> recitedIdList = new ArrayList<Integer>();
@@ -105,12 +106,17 @@ public class RecitedFragment extends Fragment {
                 poemId = cursor.getInt(0);
                 recitedIdList.add(poemId);
             }
+
+            cursorTotal = db.query("POEM",
+                    new String[] {"_id", "TITLE", "POEM_ID", "IS_PASS"}, "", new String[] {},
+                    null, null, "_id desc");
             CursorAdapter cursorAdapter = new SimpleCursorAdapter(getContext(), R.layout.recited_item,
                     cursor, new String[]{"TITLE"}, new int[]{R.id.poem_name}, 0);
             listView.setAdapter(cursorAdapter);
             int totalRecitedPoem = cursor.getCount();
+            int totalPoem = cursorTotal.getCount();
             TextView totalView = getView().findViewById(R.id.recited_count);
-            totalView.setText("一共背出来" + totalRecitedPoem + "首古诗。");
+            totalView.setText("一共有古诗" + totalPoem + "首，背出来" + totalRecitedPoem + "首古诗。");
 
         } catch(SQLiteException e) {
             System.out.print(e);
