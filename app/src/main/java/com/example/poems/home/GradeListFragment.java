@@ -34,7 +34,7 @@ import com.example.poems.poem.PoemListByAuthorActivity;
 import java.util.ArrayList;
 
 public class GradeListFragment extends Fragment {
-    String[] gradeList = new String[]{"一年级", "二年级", "三年级", "四年级", "五年级", "六年级" , "七年级", "八年级", "九年级"};
+    String[] gradeList = new String[]{"一年级", "二年级", "三年级", "四年级", "五年级", "六年级" , "七年级", "八年级", "九年级", "补充诗词", "长篇诗词"};
     TextView textView;
 //    ThingsAdapter adapter;
     FragmentActivity listener;
@@ -143,8 +143,15 @@ public class GradeListFragment extends Fragment {
 //                    default:
                         grade = 8;
                         break;
-                    default:
+                    case 8:
                         grade = 9;
+                        break;
+                    case 9:
+                        grade = 10;
+                        break;
+                    case 10:
+                    default:
+                        grade = -1;
                         break;
                 }
                 Intent intent = new Intent(getActivity(), PoemListActivity.class);

@@ -45,6 +45,13 @@
             android:layout_height="50dp"
             android:text="@string/search_button"
             android:layout_marginBottom="0dp" />
+
+        <Button
+            android:id="@+id/fhl_search_button"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="@string/fhl_search_button"
+            android:layout_marginBottom="0dp"/>
     </LinearLayout>
 
     <ListView

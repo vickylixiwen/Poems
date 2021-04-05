@@ -36,6 +36,7 @@
     <string name="search_title">搜索:</string>
     <string name="search_hint">古诗词名</string>
     <string name="search_button">搜索 🔍</string>
+    <string name="fhl_search_button">飞花令</string>
     <string name="switch_pinyin">拼音</string>
 
 

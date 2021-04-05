@@ -115,8 +115,15 @@ public class PoemListActivity extends AppCompatActivity {
             case 8:
                 grade_text = "八年级";
                 break;
-            default:
+            case 9:
                 grade_text = "九年级";
+                break;
+            case 10:
+                grade_text = "补充诗词";
+                break;
+            case -1:
+            default:
+                grade_text = "长篇诗词";
                 break;
         }
 

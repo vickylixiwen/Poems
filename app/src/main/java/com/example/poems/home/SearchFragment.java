@@ -51,6 +51,7 @@ public class SearchFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         searchText = getView().findViewById(R.id.search_text_field);
         Button searchButton = getView().findViewById(R.id.search_button);
+        Button feihualingButton = getView().findViewById(R.id.fhl_search_button);
         searchText.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -72,13 +73,32 @@ public class SearchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!searchTextValue.isEmpty() || searchTextValue != "") {
-                    //close the soft keyboard
-                    searchText.onEditorAction(EditorInfo.IME_ACTION_DONE);
-                    Toast.makeText(getActivity(), "you have searched " +  searchText.getText().toString(), Toast.LENGTH_LONG).show();
-                    startSearch(searchTextValue);
-                } else {
+                try {
+                    if (!searchTextValue.isEmpty() || searchTextValue != "") {
+                        //close the soft keyboard
+                        searchText.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                        Toast.makeText(getActivity(), "you have searched " + searchText.getText().toString(), Toast.LENGTH_LONG).show();
+                        startSearch(searchTextValue);
+                    }
+                } catch(Exception e){
                     searchText.setError("请输入古诗/词名");
+                }
+            }
+        });
+
+        feihualingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    if (!searchTextValue.isEmpty() || searchTextValue != "") {
+                        //close the soft keyboard
+                        searchText.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                        Toast.makeText(getActivity(), "you have searched " + searchText.getText().toString(), Toast.LENGTH_LONG).show();
+                        startFHLSearch(searchTextValue);
+                    }
+                } catch (Exception e) {
+                    searchText.setError("请输入飞花令");
+                    throw e;
                 }
             }
         });
@@ -131,5 +151,54 @@ public class SearchFragment extends Fragment {
         listView.setOnItemClickListener(itemClickListener);
     }
 
+    public void startFHLSearch(String word) {
+        ListView listView = getView().findViewById(R.id.result_list);
+        try {
+            SQLiteOpenHelper poemDatabaseHelper = new DatabaseHelper(getContext());
+            db = poemDatabaseHelper.getReadableDatabase();
+            System.out.println(word);
+            String titleContent = "";
+            cursor = db.query("POEM",
+                    new String[] {"_id", "TITLE", "CONTENT", "POEM_ID", "IS_PASS"}, "CONTENT LIKE ?", new String[] {"%" + word + "%"},
+                    null, null, "_id");
+            System.out.println(cursor);
+            while (cursor.moveToNext()) {
+                poemId = cursor.getInt(0);
+                System.out.println(poemId);
+                searchResultIdList.add(poemId);
+                titleContent = cursor.getString(1) + "\n" + cursor.getString(2);
+                System.out.println(titleContent);
+            }
+            CursorAdapter cursorAdapter = new SimpleCursorAdapter(getContext(), R.layout.feihualing_item,
+                    cursor, new String[]{"TITLE", "CONTENT"}, new int[]{R.id.poem_name, R.id.poem_content}, 0);
+            listView.setAdapter(cursorAdapter);
+
+        } catch(SQLiteException e) {
+            System.out.print(e);
+            Toast toast  = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
+                Intent intent = new Intent(getActivity(), PoemDetailActivity.class);
+                if (cursor.moveToPosition(position)) {
+                    poemId = cursor.getInt(0);
+//                    poemIsRecited = (cursor.getInt(3) == 1);// 0 - false; 1 - true
+                    pId = cursor.getInt(2);
+                }
+                String pageSource = "searchResultList";
+                intent.putExtra(PoemDetailActivity.POEM_ID, poemId);
+                intent.putExtra(PoemDetailActivity.POEM_INDEX, position);
+                intent.putExtra(PoemDetailActivity.P_ID, pId);
+                intent.putIntegerArrayListExtra(PoemDetailActivity.POEM_ID_LIST, searchResultIdList);
+                intent.putExtra(PoemDetailActivity.POEM_IS_RECITED, poemIsRecited);
+                intent.putExtra(PoemDetailActivity.PAGE_SOURCE, pageSource);
+                startActivity(intent);
+            }
+        };
+
+        listView.setOnItemClickListener(itemClickListener);
+    }
 
 }
